@@ -126,6 +126,11 @@ void Game::CheckCollision()
 	{
 		ball.y_velocity *= -1;
 	}
+	if (ball.y_position >= Console::WindowHeight() - 1)
+	{
+		ball.moving = false;
+		gameLose = true;
+	}
 	if (gameLose)
 	{
 		Console::SetCursorPosition(WINDOW_WIDTH / 2 - 10, WINDOW_HEIGHT / 2);
