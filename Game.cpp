@@ -28,11 +28,12 @@ void Game::Reset()
 	brick.doubleThick = true;
 	brick.color = ConsoleColor::DarkGreen;
 
-	int spacing = 10;
+	int brickCount = 5;
+	int spacing = 14;
 	int startX = 0;
 
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < brickCount; i++)
 	{
 		brick.x_position = startX + i * spacing;
 		bricks.push_back(brick);
@@ -102,10 +103,22 @@ void Game::CheckCollision()
 				i--;
 			}
 		}
+
+
 		// TODO #5 - If the ball hits the same brick 3 times (color == black), remove it from the vector
 
 	}
-
+	if (bricks.empty())
+	{
+		ball.moving = false;
+		gameWin = true;
+	}
+	int textBox = 30;
+	if (gameWin)
+	{
+		Console::SetCursorPosition(WINDOW_WIDTH / 2 - 10, WINDOW_HEIGHT / 2);
+		Console::WordWrap((Console::WindowWidth() - textBox) / 2, Console::WindowHeight() / 2, textBox, "You win! Press R to play again.");
+	}
 	// TODO #6 - If no bricks remain, pause ball and display (render) victory text with R to reset
 
 
