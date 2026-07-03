@@ -126,6 +126,11 @@ void Game::CheckCollision()
 	{
 		ball.y_velocity *= -1;
 	}
+	if (gameLose)
+	{
+		Console::SetCursorPosition(WINDOW_WIDTH / 2 - 10, WINDOW_HEIGHT / 2);
+		Console::WordWrap((Console::WindowWidth() - textBox) / 2, Console::WindowHeight() / 2, textBox, "You Lose! Press R to play again.");
+	}
 
 	// TODO #7 - If ball touches bottom of window, pause ball and display (render) defeat text with R to reset
 }
